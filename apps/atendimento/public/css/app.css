@@ -259,6 +259,19 @@ a { color: var(--cor-primaria); }
 
 .totem__ticket-qr { margin: 16px auto; }
 
+.totem__rodape-acesso {
+    text-align: center;
+    padding: 12px;
+}
+
+.totem__rodape-acesso a {
+    color: var(--cor-texto-suave);
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.totem__rodape-acesso a:hover { text-decoration: underline; }
+
 /* ============================================================
    PAINEL DE TV
    ============================================================ */

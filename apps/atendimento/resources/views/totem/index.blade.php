@@ -86,6 +86,10 @@
             </section>
         </form>
     </main>
+
+    <footer class="totem__rodape-acesso">
+        <a href="{{ route('atendente.index') }}">Acesso do atendente</a>
+    </footer>
 </div>
 @endsection
 
