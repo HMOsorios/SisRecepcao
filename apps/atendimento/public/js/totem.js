@@ -36,6 +36,11 @@
 
         if (!els.form) { return; }
 
+        // Marca o instante do carregamento da página (anti-bot — Seção 8.8):
+        // precisa ser gravado agora, não no envio, senão o cálculo de
+        // "tempo de preenchimento" no servidor nunca detecta nada.
+        if (els.tempoField) { els.tempoField.value = String(Math.floor(Date.now() / 1000)); }
+
         els.form.addEventListener('submit', emitir);
         if (els.btnVoltar) { els.btnVoltar.addEventListener('click', voltar); }
         if (els.btnAudio) { els.btnAudio.addEventListener('click', alternarAudio); }
@@ -111,9 +116,9 @@
         els.btnEmitir.disabled = true;
         els.btnEmitir.textContent = 'Emitindo senha…';
 
-        // honeypot anti-bot (Seção 8.8)
+        // honeypot anti-bot (Seção 8.8) — garante vazio no envio; o campo de
+        // tempo já foi marcado no carregamento (init), não mexer aqui.
         if (els.honeypot) { els.honeypot.value = ''; }
-        if (els.tempoField) { els.tempoField.value = String(Math.floor(Date.now() / 1000)); }
 
         var dados = new FormData(els.form);
         fetch(els.form.action, {

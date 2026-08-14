@@ -84,7 +84,7 @@ class TotemEmitirTest extends TestCase
         $response = $this->post(route('totem.emitir'), [
             'servico' => 1,
             'prioridade' => 1,
-            'website' => 'http://bot.example',
+            config('honeypot.field') => 'http://bot.example',
         ]);
 
         $response->assertStatus(422);
@@ -98,7 +98,7 @@ class TotemEmitirTest extends TestCase
         $response = $this->post(route('totem.emitir'), [
             'servico' => 1,
             'prioridade' => 1,
-            'empresa' => (string) now()->timestamp,
+            config('honeypot.tempo_field') => (string) now()->timestamp,
         ]);
 
         $response->assertStatus(422);

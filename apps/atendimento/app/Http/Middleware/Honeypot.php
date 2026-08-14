@@ -19,13 +19,17 @@ class Honeypot
         $campo = config('honeypot.field', 'website');
         $tempoCampo = config('honeypot.tempo_field', 'empresa');
 
-        if ($request->has($campo) && $request->input($campo) !== '') {
+        // filled() (não has() + !== '') — o middleware global
+        // ConvertEmptyStringsToNull roda antes deste e converte '' em null;
+        // "!== ''" nunca detecta isso e barra até submissão legítima.
+        if (filled($request->input($campo))) {
             abort(422, 'Solicitação inválida.');
         }
 
-        if (config('honeypot.validar_tempo') && $request->has($tempoCampo)) {
+        if (config('honeypot.validar_tempo') && filled($request->input($tempoCampo))) {
             $preenchidoEm = (int) $request->input($tempoCampo);
-            if ($preenchidoEm > 0 && (now()->timestamp - $preenchidoEm) < 3) {
+            $minimo = (int) config('honeypot.tempo_minimo', 3);
+            if ($preenchidoEm > 0 && (now()->timestamp - $preenchidoEm) < $minimo) {
                 abort(422, 'Solicitação muito rápida.');
             }
         }
