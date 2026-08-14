@@ -119,10 +119,17 @@
         fetch(els.form.action, {
             method: 'POST',
             body: dados,
-            headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content },
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json',
+            },
         })
             .then(function (r) {
-                if (!r.ok) { return r.json().then(function (b) { throw new Error(b.message || 'Falha ao emitir.'); }); }
+                if (!r.ok) {
+                    return r.json()
+                        .catch(function () { throw new Error('Sessão expirada — recarregue a página e tente novamente.'); })
+                        .then(function (b) { throw new Error(b.message || 'Falha ao emitir.'); });
+                }
                 return r.json();
             })
             .then(function (res) {

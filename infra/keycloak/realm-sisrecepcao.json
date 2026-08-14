@@ -51,12 +51,14 @@
       "directAccessGrantsEnabled": false,
       "redirectUris": [
         "http://atendimento.sisrecepcao.test/*",
-        "https://atendimento.sisrecepcao.test/*"
+        "https://atendimento.sisrecepcao.test/*",
+        "http://127.0.0.1:8000/*",
+        "http://localhost:8000/*"
       ],
       "webOrigins": ["+"],
       "attributes": {
         "pkce.code.challenge.method": "S256",
-        "post.logout.redirect.uris": "http://atendimento.sisrecepcao.test/*"
+        "post.logout.redirect.uris": "http://atendimento.sisrecepcao.test/*##http://127.0.0.1:8000/*##http://localhost:8000/*"
       },
       "protocolMappers": [
         {
@@ -86,12 +88,14 @@
       "directAccessGrantsEnabled": false,
       "redirectUris": [
         "http://admin.sisrecepcao.test/*",
-        "https://admin.sisrecepcao.test/*"
+        "https://admin.sisrecepcao.test/*",
+        "http://127.0.0.1:8001/*",
+        "http://localhost:8001/*"
       ],
       "webOrigins": ["+"],
       "attributes": {
         "pkce.code.challenge.method": "S256",
-        "post.logout.redirect.uris": "http://admin.sisrecepcao.test/*"
+        "post.logout.redirect.uris": "http://admin.sisrecepcao.test/*##http://127.0.0.1:8001/*##http://localhost:8001/*"
       },
       "protocolMappers": [
         {
