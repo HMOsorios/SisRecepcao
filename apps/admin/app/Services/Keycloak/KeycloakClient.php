@@ -98,6 +98,7 @@ class KeycloakClient
 
         Session::put(config('keycloak.session_token_key'), $tokens['access_token']);
         Session::put(config('keycloak.session_refresh_key'), $tokens['refresh_token'] ?? '');
+        Session::put(config('keycloak.session_id_token_key'), $tokens['id_token'] ?? '');
         Session::put(config('keycloak.session_user_key'), $userinfo);
 
         return $userinfo;
@@ -142,10 +143,22 @@ class KeycloakClient
     {
         $this->discover();
 
-        return $this->logoutEndpoint.'?'.http_build_query([
+        $idToken = Session::get(config('keycloak.session_id_token_key'));
+
+        $params = [
             'client_id' => $this->clientId,
             'post_logout_redirect_uri' => $redirect,
-        ]);
+        ];
+
+        // Sem id_token_hint, o Keycloak (RP-Initiated Logout) exibe uma
+        // página de confirmação em vez de encerrar a sessão SSO na hora —
+        // se essa confirmação passar despercebida, o próximo login volta
+        // silenciosamente autenticado como o mesmo usuário.
+        if (filled($idToken)) {
+            $params['id_token_hint'] = $idToken;
+        }
+
+        return $this->logoutEndpoint.'?'.http_build_query($params);
     }
 
     /**

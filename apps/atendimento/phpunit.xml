@@ -27,6 +27,10 @@
         <env name="DB_DATABASE" value=":memory:"/>
         <env name="DB_URL" value=""/>
         <env name="MAIL_MAILER" value="array"/>
+        <!-- Isola os testes do Keycloak local de desenvolvimento (Docker) —
+             evita depender do KEYCLOAK_BASE_URL real configurado no .env. -->
+        <env name="KEYCLOAK_BASE_URL" value="http://keycloak.test"/>
+        <env name="KEYCLOAK_REDIRECT_URI" value="http://atendimento.sisrecepcao.test/auth/callback"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="PULSE_ENABLED" value="false"/>

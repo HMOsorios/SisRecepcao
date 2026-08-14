@@ -34,6 +34,7 @@ return [
     */
     'session_token_key' => 'keycloak_access_token',
     'session_refresh_key' => 'keycloak_refresh_token',
+    'session_id_token_key' => 'keycloak_id_token',
     'session_user_key' => 'keycloak_user',
     'session_state_key' => 'keycloak_state',
 ];
