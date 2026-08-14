@@ -10,7 +10,7 @@
             <h1 class="cabecalho__titulo">Console do Atendente — {{ config('sms.nome') }}</h1>
         </div>
         <nav class="cabecalho__nav">
-            <a class="botao botao--contorno" href="{{ route('auth.sair') }}" style="border-color:#fff;color:#fff;">Sair ({{ $usuarioNome }})</a>
+            <a class="botao botao--contorno" href="{{ route('auth.logout') }}" style="border-color:#fff;color:#fff;">Sair ({{ $usuarioNome }})</a>
         </nav>
     </header>
 

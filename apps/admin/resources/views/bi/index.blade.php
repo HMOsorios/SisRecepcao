@@ -14,7 +14,7 @@
         </div>
         <nav class="cabecalho__nav">
             <a class="botao botao--contorno" href="{{ route('diretoria.index') }}">Diretoria</a>
-            <a class="botao botao--destaque" href="{{ route('auth.sair') }}">Sair</a>
+            <a class="botao botao--destaque" href="{{ route('auth.logout') }}">Sair</a>
         </nav>
     </header>
 
