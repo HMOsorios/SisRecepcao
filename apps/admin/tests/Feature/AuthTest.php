@@ -35,11 +35,22 @@ class AuthTest extends TestCase
     }
 
     #[Test]
-    public function login_redireciona_para_keycloak(): void
+    public function login_mostra_tela_de_confirmacao(): void
+    {
+        // A tela do Keycloak é idêntica visualmente entre os apps do mesmo
+        // realm — essa confirmação evita logar com a conta errada no app
+        // errado (Seção 8.6).
+        $this->get(route('auth.login'))
+            ->assertOk()
+            ->assertSee('Portal Administrativo');
+    }
+
+    #[Test]
+    public function login_iniciar_redireciona_para_keycloak(): void
     {
         $this->fakeKeycloak();
 
-        $this->get(route('auth.login'))
+        $this->get(route('auth.login.iniciar'))
             ->assertRedirect()
             ->assertRedirectContains($this->base);
     }

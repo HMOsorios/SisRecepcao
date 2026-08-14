@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Keycloak\KeycloakClient;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 /**
  * Autenticação via Keycloak (IdP central — Seção 5.4/8.6).
@@ -15,9 +16,16 @@ class AuthController extends Controller
     public function __construct(protected readonly KeycloakClient $keycloak) {}
 
     /**
-     * Inicia o fluxo de login redirecionando para o Keycloak.
+     * Tela de confirmação antes do Keycloak — a tela de login do Keycloak é
+     * idêntica visualmente para todos os apps/clients do mesmo realm, então
+     * sem isso é fácil confundir e logar com a conta errada no app errado.
      */
-    public function login(): RedirectResponse
+    public function login(): View
+    {
+        return view('auth.login');
+    }
+
+    public function iniciar(): RedirectResponse
     {
         return redirect()->away($this->keycloak->authorizationUrl());
     }

@@ -23,6 +23,7 @@ Route::get('/', fn () => redirect()->route('totem.index'));
 // ---- Autenticação (Keycloak — Seção 5.4/8.6) ----
 Route::prefix('auth')->name('auth.')->group(function (): void {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/login/iniciar', [AuthController::class, 'iniciar'])->name('login.iniciar');
     Route::get('/callback', [AuthController::class, 'callback'])->name('callback');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/sair', [AuthController::class, 'sair'])->name('sair');
