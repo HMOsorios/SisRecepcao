@@ -1,0 +1,27 @@
+# Raiz — guarda de segurança; cada app tem seu próprio .gitignore.
+
+# Sistemas
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ferramentas locais
+*.log
+npm-debug.log*
+yarn-error.log*
+.env
+.env.*
+!.env.example
+
+# Código-fonte de terceiros baixado só para análise/referência (Seções 5, 6,
+# 9 do recepcao.md) — não faz parte do SisRecepção, não deve entrar no
+# histórico do repositório (cada um é um projeto open-source completo).
+docs/novosga-2.3 - Gov/
+docs/dbeaver-devel/
+docs/cloudbeaver-devel/
+docs/mod-sei-pen-master/

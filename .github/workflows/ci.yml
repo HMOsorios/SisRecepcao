@@ -1,0 +1,71 @@
+name: CI
+
+# Pipeline obrigatório antes de merge no branch de produção (Seção 9.4 do
+# docs/recepcao.md): Pint (padrão de código) + PHPUnit nos dois apps.
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+
+jobs:
+  atendimento:
+    name: Atendimento (Pint + PHPUnit)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/atendimento
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, sqlite3, fileinfo, zip
+          coverage: none
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: apps/atendimento/vendor
+          key: composer-atendimento-${{ hashFiles('apps/atendimento/composer.lock') }}
+          restore-keys: composer-atendimento-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Pint
+        run: vendor/bin/pint --test
+
+      - name: PHPUnit
+        run: php artisan test
+
+  admin:
+    name: Admin (Pint + PHPUnit)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/admin
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, sqlite3, fileinfo, zip
+          coverage: none
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: apps/admin/vendor
+          key: composer-admin-${{ hashFiles('apps/admin/composer.lock') }}
+          restore-keys: composer-admin-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Pint
+        run: vendor/bin/pint --test
+
+      - name: PHPUnit
+        run: php artisan test

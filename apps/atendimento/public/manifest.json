@@ -1,0 +1,19 @@
+{
+    "name": "SisRecepção — Totem de Atendimento",
+    "short_name": "Totem SMS",
+    "description": "Totem de autoatendimento da Secretaria Municipal de Saúde",
+    "start_url": "/totem",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#f4f6f8",
+    "theme_color": "#0b6e4f",
+    "lang": "pt-BR",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
+}

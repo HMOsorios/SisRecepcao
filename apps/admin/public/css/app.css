@@ -1,0 +1,227 @@
+/* SisRecepção — Admin (portal institucional, diretoria, BI) */
+
+:root {
+    --cor-primaria: #0b6e4f;
+    --cor-primaria-escura: #08523a;
+    --cor-destaque: #f2a007;
+    --cor-texto: #1f2937;
+    --cor-texto-suave: #6b7280;
+    --cor-fundo: #f4f7f6;
+    --cor-cartao: #ffffff;
+    --cor-borda: #d8e0de;
+    --cor-erro: #b42318;
+    --cor-ok: #067647;
+    --raio: 10px;
+    --sombra: 0 1px 3px rgba(16, 24, 40, .10), 0 1px 2px rgba(16, 24, 40, .06);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body.app-body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a { color: var(--cor-primaria); }
+
+/* ---- Layout ---- */
+
+.corpo {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.corpo__conteudo { flex: 1; padding: 2rem 1.5rem; }
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1.25rem 1.5rem;
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+.cabecalho--portal { background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-primaria-escura) 100%); }
+
+.cabecalho__titulo { margin: 0; font-size: 1.4rem; }
+.cabecalho__subtitulo { margin: .25rem 0 0; opacity: .85; font-size: .9rem; }
+
+.cabecalho__nav { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+.rodape {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    color: var(--cor-texto-suave);
+    font-size: .85rem;
+    border-top: 1px solid var(--cor-borda);
+    background: #fff;
+}
+
+/* ---- Botões ---- */
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 44px;
+    padding: .55rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: .95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter .15s;
+}
+
+.botao:hover { filter: brightness(.94); }
+
+.botao--destaque { background: var(--cor-destaque); color: #3a2a00; }
+.botao--contorno { background: transparent; border-color: var(--cor-primaria); color: var(--cor-primaria); }
+.cabecalho .botao--contorno { border-color: #fff; color: #fff; }
+
+/* ---- Cartões ---- */
+
+.cartao {
+    background: var(--cor-cartao);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.25rem;
+}
+
+.cartao__titulo { margin: 0 0 .75rem; font-size: 1.05rem; color: var(--cor-primaria-escura); }
+
+.cartao--link {
+    display: block;
+    text-decoration: none;
+    color: var(--cor-texto);
+    transition: transform .15s, box-shadow .15s;
+}
+
+.cartao--link:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16, 24, 40, .14); }
+
+.cartao--indicador { text-align: center; }
+
+.cartao__rotulo { display: block; font-size: .8rem; color: var(--cor-texto-suave); margin-bottom: .25rem; }
+.cartao__valor { display: block; font-size: 1.9rem; font-weight: 700; color: var(--cor-primaria); }
+
+.grade-cartoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.grade-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* ---- Tabelas ---- */
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .92rem;
+}
+
+.tabela th, .tabela td {
+    padding: .6rem .75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.tabela thead th { color: var(--cor-texto-suave); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .02em; }
+.tabela .num { text-align: right; }
+.tabela tbody tr:hover { background: #f7faf9; }
+
+/* ---- Formulários ---- */
+
+.campo {
+    width: 100%;
+    min-height: 44px;
+    padding: .55rem .75rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    font-size: .95rem;
+    background: #fff;
+    color: var(--cor-texto);
+}
+
+.campo:focus { outline: 2px solid var(--cor-primaria); outline-offset: 1px; border-color: var(--cor-primaria); }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-grid__item label { display: block; font-weight: 600; margin-bottom: .3rem; font-size: .9rem; }
+
+.erro { color: var(--cor-erro); font-size: .8rem; }
+
+/* ---- Alertas ---- */
+
+.alerta {
+    padding: .85rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.alerta--ok { background: #ecfdf3; color: var(--cor-ok); border: 1px solid #abefc6; }
+.alerta--erro { background: #fef3f2; color: var(--cor-erro); border: 1px solid #fecdca; }
+
+/* ---- Portal ---- */
+
+.portal__hero {
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-primaria-escura) 100%);
+    color: #fff;
+    border-radius: var(--raio);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.portal__hero h2 { margin: 0 0 .5rem; font-size: 1.6rem; }
+.portal__hero p { margin: 0 0 1.25rem; opacity: .92; max-width: 640px; }
+
+.portal__titulo { margin: 0 0 1rem; color: var(--cor-primaria-escura); }
+
+.portal__grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+/* ---- Erros ---- */
+
+.corpo--erro { justify-content: center; }
+.erro { text-align: center; padding-top: 6vh; }
+.erro__codigo { font-size: 6rem; font-weight: 800; color: var(--cor-primaria); opacity: .25; line-height: 1; }
+.erro__titulo { margin: .5rem 0 .25rem; font-size: 1.5rem; }
+.erro__descricao { color: var(--cor-texto-suave); margin: 0 auto 1.5rem; max-width: 420px; }
+
+@media (max-width: 640px) {
+    .cabecalho { padding: 1rem; }
+    .corpo__conteudo { padding: 1.25rem 1rem; }
+    .portal__hero { padding: 1.5rem; }
+    .grade-cartoes { grid-template-columns: repeat(2, 1fr); }
+}

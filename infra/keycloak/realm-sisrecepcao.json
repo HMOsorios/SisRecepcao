@@ -1,0 +1,128 @@
+{
+  "realm": "sisrecepcao",
+  "enabled": true,
+  "displayName": "SisRecepção SMS",
+  "registrationAllowed": false,
+  "registrationEmailAsUsername": false,
+  "rememberMe": false,
+  "verifyEmail": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "sslRequired": "external",
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 28800,
+  "roles": {
+    "realm": [
+      {
+        "name": "Developer",
+        "description": "Acesso integral ao painel administrativo (configurações, deploy, usuários)."
+      },
+      {
+        "name": "Admin",
+        "description": "Administrador da unidade: BI, relatórios, usuários e configurações."
+      },
+      {
+        "name": "Diretoria",
+        "description": "Painel da diretoria e relatórios."
+      },
+      {
+        "name": "Servidor",
+        "description": "Servidor da SMS com acesso ao portal e ao console de atendimento."
+      },
+      {
+        "name": "Atendente",
+        "description": "Operador do console de atendimento."
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "sisrecepcao-atendimento",
+      "name": "SisRecepção — Atendimento",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://atendimento.sisrecepcao.test/*",
+        "https://atendimento.sisrecepcao.test/*"
+      ],
+      "webOrigins": ["+"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://atendimento.sisrecepcao.test/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "realm roles (userinfo)",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "sisrecepcao-admin",
+      "name": "SisRecepção — Administrativo",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://admin.sisrecepcao.test/*",
+        "https://admin.sisrecepcao.test/*"
+      ],
+      "webOrigins": ["+"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://admin.sisrecepcao.test/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "realm roles (userinfo)",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "admin-cli",
+      "name": "Admin REST API (senha do usuário realm-admin)",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "redirectUris": []
+    }
+  ],
+  "clientScopeMappings": {},
+  "scopeMappings": []
+}

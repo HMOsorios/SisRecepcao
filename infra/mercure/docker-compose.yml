@@ -1,0 +1,31 @@
+# Hub Mercure compartilhado com o NovoSGA (Seção 5.1/2.6 do docs/recepcao.md).
+# O NovoSGA publica eventos (notificaFilaUnidade, notificaPainel, notificaAtendimento)
+# usando a MERCURE_JWT_SECRET abaixo; o painel de TV e o console do atendente
+# assinam via EventSource nos tópicos /unidades/{id}/painel e /unidades/{id}/fila.
+name: sisrecepcao-mercure
+
+services:
+  mercure:
+    image: dunglas/mercure:v0.18
+    restart: unless-stopped
+    environment:
+      # URL pública que os navegadores usarão no EventSource.
+      MERCURE_PUBLIC_URL: "${MERCURE_PUBLIC_URL:-https://mercure.sisrecepcao.test/.well-known/mercure}"
+      # Mesma secret do NovoSGA (MERCURE_JWT_SECRET) para validar o publisher.
+      MERCURE_PUBLISHER_JWT_KEY: "${MERCURE_JWT_SECRET}"
+      # Sem subscriber key => assinatura anônima (recomendado para painel TV/console).
+      # Para proteger a assinatura, defina MERCURE_SUBSCRIBER_JWT_KEY aqui e preencha
+      # MERCURE_SUBSCRIBER_KEY nos .env de apps/atendimento.
+      MERCURE_EXTRA_DIRECTIVES: |
+        cors_origins ${MERCURE_CORS_ORIGINS:-https://*.sisrecepcao.test}
+    ports:
+      # Internamente o Caddy escuta em 80; 3000 mantém compatibilidade com a
+      # porta padrão do NovoSGA (MERCURE_URL=http://127.0.0.1:3000/.well-known/mercure).
+      - "${MERCURE_HTTP_PORT:-3000}:80"
+    volumes:
+      - mercure_data:/data
+      - mercure_config:/config
+
+volumes:
+  mercure_data:
+  mercure_config:
