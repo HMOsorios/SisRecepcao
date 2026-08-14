@@ -36,7 +36,11 @@ class AuthController extends Controller
         $esperado = session(config('keycloak.session_state_key'));
 
         if ($code === '' || $state !== $esperado) {
-            abort(419, 'State inválido ou código ausente — possível CSRF.');
+            // Não é um erro fatal para o usuário: acontece quando a URL de
+            // callback é revisitada (voltar do navegador, aba antiga) depois
+            // de um novo login ter sido iniciado. Reinicia o fluxo em vez de
+            // travar numa página de erro sem saída.
+            return redirect()->route('auth.login')->withErrors(['auth' => 'Sessão de login expirada, tente novamente.']);
         }
 
         $this->keycloak->handleCallback($code);

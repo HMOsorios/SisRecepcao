@@ -55,13 +55,14 @@ class AuthTest extends TestCase
     }
 
     #[Test]
-    public function callback_com_state_invalido_aborta(): void
+    public function callback_com_state_invalido_reinicia_login(): void
     {
         Session::put(config('keycloak.session_state_key'), 'estado-esperado');
         Session::put('keycloak_code_verifier', 'verifier');
 
         $this->get('/auth/callback?code=abc&state=errado')
-            ->assertStatus(401);
+            ->assertRedirect(route('home.index'))
+            ->assertSessionHas('erro');
     }
 
     #[Test]

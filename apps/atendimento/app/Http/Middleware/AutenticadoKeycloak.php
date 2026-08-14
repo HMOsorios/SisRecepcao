@@ -20,6 +20,13 @@ class AutenticadoKeycloak
             return redirect()->guest(route('auth.login'));
         }
 
-        return $next($request);
+        $response = $next($request);
+
+        // Sem isso, o navegador pode reexibir a página autenticada do cache
+        // local após o logout, dando a falsa impressão de sessão ainda ativa.
+        $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+        $response->headers->set('Pragma', 'no-cache');
+
+        return $response;
     }
 }

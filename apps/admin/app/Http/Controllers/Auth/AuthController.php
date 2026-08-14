@@ -30,7 +30,12 @@ class AuthController extends Controller
         $code = (string) $request->query('code');
 
         if ($code === '' || $request->query('state') !== Session::get(config('keycloak.session_state_key'))) {
-            abort(401, 'Parâmetro de autenticação inválido.');
+            // Não é um erro fatal para o usuário: acontece quando a URL de
+            // callback é revisitada (voltar do navegador, aba antiga) depois
+            // de um novo login ter sido iniciado. Mesmo padrão do caso
+            // "error" acima — volta à home com aviso, em vez de travar numa
+            // página de erro sem saída.
+            return redirect()->route('home.index')->with('erro', 'Sessão de login expirada. Clique em "Acessar o sistema" para tentar de novo.');
         }
 
         $this->keycloak->handleCallback($code);
