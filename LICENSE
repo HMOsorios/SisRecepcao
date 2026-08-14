@@ -1,17 +1,16 @@
 LICENÇA PRIVADA E COMERCIAL — SISRECEPÇÃO
 
-Copyright (c) 2026 Prefeitura Municipal / Secretaria Municipal de Saúde (SMS).
-Todos os direitos reservados.
+Copyright (c) 2026 HMOsorio. Todos os direitos reservados.
 
 Este software ("SisRecepção — Sistema de Gestão de Recepção e Atendimento")
-é de propriedade privada da Secretaria Municipal de Saúde (SMS). Ele é
-disponibilizado para uso sem custos, por tempo indeterminado, exclusivamente
-pela SMS e por seus órgãos/entidades diretamente vinculados.
+é de autoria e propriedade de HMOsorio ("o autor"), que cede seu uso, a título
+gratuito e por tempo indeterminado, à Secretaria Municipal de Saúde (SMS) e
+aos seus órgãos/entidades diretamente vinculados, nos termos desta licença.
 
 1. CONCESSÃO DE USO
 
-É concedida à SMS, a título gratuito e por prazo indeterminado, uma licença
-mundial, não exclusiva, irrevogável e isenta de royalties para:
+O autor concede à SMS, a título gratuito e por prazo indeterminado, uma
+licença mundial, não exclusiva, irrevogável e isenta de royalties para:
 
   a) usar, executar, copiar e instalar o software em seus servidores,
      equipamentos e infraestrutura de TI;
@@ -27,8 +26,7 @@ ou licenciamento enquanto a SMS fizer uso do software.
 
 2. RESTRIÇÕES
 
-Ficam expressamente vedadas, salvo autorização escrita prévia do titular dos
-direitos:
+Ficam expressamente vedadas, salvo autorização escrita prévia do autor:
 
   a) a comercialização, sublicença, venda, aluguel ou locação do software ou de
      obras derivadas a terceiros fora do âmbito da SMS;
@@ -42,9 +40,10 @@ direitos:
 3. PROPRIEDADE INTELECTUAL
 
 Todos os direitos de propriedade intelectual sobre o software, incluindo o
-código-fonte, a documentação e as obras derivadas autorizadas, permanecem com o
-titular dos direitos, ressalvados os direitos de uso concedidos neste
-instrumento. Nenhuma disposição desta licença transfere a propriedade.
+código-fonte, a documentação e as obras derivadas autorizadas, permanecem com
+o autor (HMOsorio), ressalvados os direitos de uso concedidos neste
+instrumento. Nenhuma disposição desta licença transfere a propriedade — a SMS
+recebe apenas os direitos de uso descritos na Cláusula 1.
 
 4. AUSÊNCIA DE GARANTIAS
 
@@ -55,10 +54,10 @@ violação de direitos de terceiros. O uso é por conta e risco da SMS.
 
 5. LIMITAÇÃO DE RESPONSABILIDADE
 
-Em nenhuma hipótese o titular dos direitos ou seus colaboradores serão
-responsáveis por danos diretos, indiretos, incidentais, especiais,
-consequenciais ou punitivos decorrentes do uso ou da impossibilidade de uso do
-software, ainda que notificados da possibilidade de tais danos.
+Em nenhuma hipótese o autor ou seus colaboradores serão responsáveis por
+danos diretos, indiretos, incidentais, especiais, consequenciais ou punitivos
+decorrentes do uso ou da impossibilidade de uso do software, ainda que
+notificados da possibilidade de tais danos.
 
 6. RESCISÃO
 
@@ -72,4 +71,4 @@ Este instrumento rege-se pelas leis da República Federativa do Brasil, sendo
 competente o foro da comarca da sede da SMS para dirimir eventuais controvérsias.
 
 Caso a SMS necessite licenciar o software a terceiros ou alterar qualquer termo
-desta licença, deverá obter autorização escrita prévia do titular dos direitos.
+desta licença, deverá obter autorização escrita prévia do autor.
